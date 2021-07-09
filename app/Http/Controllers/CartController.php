@@ -20,9 +20,19 @@ class CartController extends Controller
         return back();
     }
 
-    function showCart() {
+    function index() {
         $cart = session()->get('cart');
-        $itemsIntoCart = $cart->items;
+        return view('shop.cart.index',compact('cart'));
+    }
+
+    function deleteToCart($idProduct) {
+        $product = Product::find($idProduct);
+        $oldCart = session()->get('cart');
+        $cart = new Cart($oldCart);
+        $cart->delete($product);
+        session()->put('cart', $cart);
+
+        return back();
 
     }
 }

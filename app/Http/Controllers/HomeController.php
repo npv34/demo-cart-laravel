@@ -9,6 +9,6 @@ class HomeController extends Controller
 {
     function index() {
         $products = Product::all();
-        return view('home', compact('products'));
+        return view('shop.home', compact('products'));
     }
 }

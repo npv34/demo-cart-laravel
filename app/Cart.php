@@ -47,8 +47,13 @@ class Cart
     function delete($product) {
         //kiem tra san pham ton tai trong gio hang chua
         if (array_key_exists($product->id, $this->items)) {
+            $storeProductDelete = $this->items[$product->id];
+            //giam tien
+            $this->totalPrice -= $storeProductDelete['price'];
+            //giam so luong
+            $this->totalQuantity -= $storeProductDelete['quantity'];
             // xoa phan tu o vi tri $product->id
-
+            unset($this->items[$product->id]);
         }
     }
 

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,8 +15,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [\App\Http\Controllers\HomeController::class,'index']);
+Route::get('/', [HomeController::class,'index']);
 
 Route::prefix('cart')->group(function () {
-    Route::get('{idProduct}/add-to-cart', [\App\Http\Controllers\CartController::class,'addToCart'])->name('cart.addToCart');
+    Route::get('/',[CartController::class,'index'])->name('cart.index');
+    Route::get('{idProduct}/add-to-cart', [CartController::class,'addToCart'])->name('cart.addToCart');
+    Route::get('{idProduct}/delete-to-cart', [CartController::class,'deleteToCart'])->name('cart.deleteToCart');
+});
+
+
+//  router trang admin
+Route::prefix('admin')->group(function () {
+
 });
