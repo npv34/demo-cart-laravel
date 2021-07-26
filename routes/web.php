@@ -21,6 +21,8 @@ Route::prefix('cart')->group(function () {
     Route::get('/',[CartController::class,'index'])->name('cart.index');
     Route::get('{idProduct}/add-to-cart', [CartController::class,'addToCart'])->name('cart.addToCart');
     Route::get('{idProduct}/delete-to-cart', [CartController::class,'deleteToCart'])->name('cart.deleteToCart');
+
+    Route::post('{idProduct}/update-to-cart', [CartController::class, 'updateToCart'])->name('cart.updateToCart');
 });
 
 

@@ -8,7 +8,8 @@ use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
-    function addToCart($idProduct) {
+    function addToCart($idProduct)
+    {
         $product = Product::find($idProduct);
 
         $oldCart = session()->get('cart');
@@ -20,12 +21,14 @@ class CartController extends Controller
         return back();
     }
 
-    function index() {
+    function index()
+    {
         $cart = session()->get('cart');
-        return view('shop.cart.index',compact('cart'));
+        return view('shop.cart.index', compact('cart'));
     }
 
-    function deleteToCart($idProduct) {
+    function deleteToCart($idProduct)
+    {
         $product = Product::find($idProduct);
         $oldCart = session()->get('cart');
         $cart = new Cart($oldCart);
@@ -33,6 +36,23 @@ class CartController extends Controller
         session()->put('cart', $cart);
 
         return back();
+
+    }
+
+    function updateToCart(Request $request, $idProduct)
+    {
+        $product = Product::find($idProduct);
+        $oldCart = session()->get('cart');
+        $cart = new Cart($oldCart);
+        $cart->update($product, $request->newQuantity);
+        session()->put('cart', $cart);
+
+        $data = [
+            'productUpdate' => session()->get('cart')->items[$idProduct],
+            'totalPriceCart' => session()->get('cart')->totalPrice,
+        ];
+
+        return response()->json($data);
 
     }
 }

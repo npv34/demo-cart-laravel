@@ -57,7 +57,27 @@ class Cart
         }
     }
 
-    function update() {
+    function update($product, $newQuantity) {
+        if (array_key_exists($product->id, $this->items)) {
 
+            $storeProductUpdate = $this->items[$product->id];
+
+            $currentQuantityProduct = $storeProductUpdate['quantity'];
+            $differenceQuantity = $newQuantity - $currentQuantityProduct;
+
+            $currentPriceProduct = $storeProductUpdate['price'];
+            $differencePrice = $newQuantity * $product->price - $currentPriceProduct;
+
+            //update  lai thong tin san pham da trong gio hang
+            $storeProductUpdate['price'] = $newQuantity * $product->price;
+            $storeProductUpdate['quantity'] = $newQuantity;
+
+            $this->items[$product->id] = $storeProductUpdate;
+
+            //update so luong trong gio hang
+            $this->totalQuantity += $differenceQuantity;
+            $this->totalPrice += $differencePrice;
+
+        }
     }
 }

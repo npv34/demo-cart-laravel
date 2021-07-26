@@ -26,10 +26,10 @@
                             </div>
                         </div></td>
                     <td class="col-sm-1 col-md-1" style="text-align: center">
-                        <input type="number" class="form-control" value="{{ $value['quantity'] }}">
+                        <input type="number" class="form-control quantity-product" data-id="{{ $value['item']->id }}" value="{{ $value['quantity'] }}">
                     </td>
-                    <td class="col-sm-2 col-md-2 text-center"><strong>${{ number_format($value['item']->price) }}</strong></td>
-                    <td class="col-sm-2 col-md-2 text-center"><strong>${{ number_format($value['price']) }}</strong></td>
+                    <td class="col-sm-2 col-md-2 text-center"><strong id="product-price-{{$value['item']->id}}">${{ number_format($value['item']->price) }}</strong></td>
+                    <td class="col-sm-2 col-md-2 text-center"><strong id="product-total-price-{{$value['item']->id}}">${{ number_format($value['price']) }}</strong></td>
                     <td class="col-sm-1 col-md-1">
                         <a onclick="return confirm('Are you sure?')" href="{{ route('cart.deleteToCart', $key) }}" type="button" class="btn btn-danger">
                             <span class="glyphicon glyphicon-remove"></span> Remove
@@ -43,7 +43,7 @@
                     <td>   </td>
                     <td>   </td>
                     <td><h5>Subtotal</h5></td>
-                    <td class="text-right"><h5><strong>${{ number_format($cart->totalPrice) }}</strong></h5></td>
+                    <td class="text-right"><h5><strong id="total-price-cart">${{ number_format($cart->totalPrice) }}</strong></h5></td>
                 </tr>
                 <tr>
                     <td>   </td>
