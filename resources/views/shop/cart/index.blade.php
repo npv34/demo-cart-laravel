@@ -16,7 +16,7 @@
                 </thead>
                 <tbody>
                 @foreach($cart->items as $key => $value)
-                <tr>
+                <tr id="product-{{$value['item']->id}}">
                     <td class="col-sm-6 col-md-6">
                         <div class="media">
                             <a class="thumbnail pull-left" href="#"> <img class="media-object" src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png" style="width: 72px; height: 72px;"> </a>
@@ -31,9 +31,9 @@
                     <td class="col-sm-2 col-md-2 text-center"><strong id="product-price-{{$value['item']->id}}">${{ number_format($value['item']->price) }}</strong></td>
                     <td class="col-sm-2 col-md-2 text-center"><strong id="product-total-price-{{$value['item']->id}}">${{ number_format($value['price']) }}</strong></td>
                     <td class="col-sm-1 col-md-1">
-                        <a onclick="return confirm('Are you sure?')" href="{{ route('cart.deleteToCart', $key) }}" type="button" class="btn btn-danger">
+                        <button data-id="{{$value['item']->id}}" type="button" class="btn btn-danger delete-product">
                             <span class="glyphicon glyphicon-remove"></span> Remove
-                        </a></td>
+                        </button></td>
                 </tr>
                 @endforeach
                 </tbody>

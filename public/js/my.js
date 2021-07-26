@@ -28,6 +28,30 @@ $(document).ready(function () {
         })
     });
 
+    $('.delete-product').click(function () {
+        let idProduct = $(this).attr('data-id');
+        let location = window.location.origin;
+
+        // su ly ajax
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            url: location + '/cart/' + idProduct + '/delete-to-cart',
+            method: 'GET',
+            success: function (response) {
+                // su ly du lieu tra ve
+               $('#product-' + idProduct).remove();
+            },
+
+            error: function (error) {
+                console.log(error);
+            }
+        })
+    })
+
 
 })
 

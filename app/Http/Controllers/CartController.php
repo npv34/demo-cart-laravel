@@ -35,7 +35,7 @@ class CartController extends Controller
         $cart->delete($product);
         session()->put('cart', $cart);
 
-        return back();
+        return response()->json(['message' => 'Delete success'] );
 
     }
 
