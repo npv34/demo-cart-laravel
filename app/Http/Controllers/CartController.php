@@ -17,8 +17,13 @@ class CartController extends Controller
         $cart->add($product);
 
         session()->put('cart', $cart);
+        $data  = [
+            'status' => 'success',
+            'message' => 'Add to cart successfully!',
+            'totalQuantityProduct' => session()->get('cart')->totalQuantity
+        ];
 
-        return back();
+        return response()->json($data);
     }
 
     function index()

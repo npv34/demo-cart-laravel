@@ -49,7 +49,7 @@
                 </div>
                 <a class="btn btn-success btn-sm ml-3" href="{{ route('cart.index') }}">
                     <i class="fa fa-shopping-cart"></i> Cart
-                    <span class="badge badge-light">{{ (session()->has('cart')) ? session()->get('cart')->totalQuantity : 0 }}</span>
+                    <span class="badge badge-light" id="total-quantity-product">{{ (session()->has('cart')) ? session()->get('cart')->totalQuantity : 0 }}</span>
                 </a>
             </form>
         </div>

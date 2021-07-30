@@ -51,7 +51,7 @@
                                         <p class="btn btn-danger btn-block">{{ $product->price }} $</p>
                                     </div>
                                     <div class="col">
-                                        <a href="{{ route('cart.addToCart', $product->id) }}" class="btn btn-success btn-block">Add to cart</a>
+                                        <button data-id="{{ $product->id }}" type="button" class="btn btn-success btn-block add-to-cart">Add to cart</button>
                                     </div>
                                 </div>
                             </div>
